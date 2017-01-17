@@ -1,4 +1,4 @@
-# simple-mock
+# simple-http-mock
 NodeJS simple mock module used to mock http responses and optionaly proxy them to other host.
 It can be used as middleware constructor, or standalone http/https server.
 Basic usage: Add your mocks to mocks directory, start mock server and debug http requests/responses.
@@ -11,7 +11,7 @@ $ npm install simple-mock --save-dev
 
 ##API
 ```js
-var simpleMock = require('simple-mock');
+var simpleMock = require('simple-http-mock');
 ```
 
 ### simpleMock.createServer(options)

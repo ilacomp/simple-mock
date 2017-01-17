@@ -1,5 +1,5 @@
 {
-  "name": "simple-mock",
+  "name": "simple-http-mock",
   "version": "1.0.0",
   "description": "Simple mock module",
   "main": "index.js",
