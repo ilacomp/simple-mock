@@ -6,7 +6,7 @@ Basic usage: Add your mocks to mocks directory, start mock server and debug http
 ##Install
 Clone repository
 ```bash
-$ npm install simple-mock --save-dev
+$ npm install simple-http-mock --save-dev
 ```
 
 ##API
