@@ -81,7 +81,7 @@ function startServer(config) {
 	//Start http server
 	if (serverConfig.httpPort) {
 		var httpServer = http.createServer(app);
-		httpServer.listen(config['http-port'], function () {
+		httpServer.listen(config['httpPort'], function () {
 			console.log('Mock server listening on port', serverConfig.httpPort);
 		});
 	}
@@ -93,7 +93,7 @@ function startServer(config) {
 		var credentials = {key: privateKey, cert: certificate};
 		var httpsServer = https.createServer(credentials, app);
 
-		httpsServer.listen(config['https-port'], function () {
+		httpsServer.listen(config['httpsPort'], function () {
 			console.log('Mock server listening on port', serverConfig.httpsPort);
 		});
 	}
