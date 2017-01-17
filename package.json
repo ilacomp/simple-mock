@@ -1,0 +1,31 @@
+{
+  "name": "simple-mock",
+  "version": "1.0.0",
+  "description": "Simple mock module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ilacomp/simple-mock.git"
+  },
+  "keywords": [
+    "mocks",
+    "http",
+    "server"
+  ],
+  "author": "ilacomp (ila.comp@gmail.com)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ilacomp/simple-mock/issues"
+  },
+  "homepage": "https://github.com/ilacomp/simple-mock#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "express-http-proxy": "^0.10.1",
+    "glob": "^7.1.1",
+    "morgan": "^1.7.0"
+  }
+}
