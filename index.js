@@ -25,6 +25,16 @@ function mocks(config) {
 	}
 
 	middlewares.push(logger(loglevel, loggerOpts));
+
+	//Use proxy
+	if (config.proxies) {
+		config.proxies.forEach(function(proxy){
+			var router = express.Router();
+			router.all(proxy.uri, httpProxy(proxy.host));
+			middlewares.push(router);
+		});
+	}
+
 	middlewares.push(bodyParser.json());
 	middlewares.push(bodyParser.urlencoded({extended: false}));
 
@@ -36,15 +46,6 @@ function mocks(config) {
 		}
 		middlewares.push(middleware);
 	});
-
-	//Use proxy
-	if (config.proxies) {
-		config.proxies.forEach(function(proxy){
-			var router = express.Router();
-			router.all(proxy.uri, httpProxy(proxy.host));
-			middlewares.push(router);
-		});
-	}
 
 	return middlewares;
 }
