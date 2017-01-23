@@ -25,18 +25,8 @@ function mocks(config) {
 	}
 
 	middlewares.push(logger(loglevel, loggerOpts));
-
-	//Use proxy
-	if (config.proxies) {
-		config.proxies.forEach(function(proxy){
-			var router = express.Router();
-			router.all(proxy.uri, httpProxy(proxy.host));
-			middlewares.push(router);
-		});
-	}
-
-	middlewares.push(bodyParser.json());
-	middlewares.push(bodyParser.urlencoded({extended: false}));
+	middlewares.push(jsonParse());
+	middlewares.push(urlEncodedParse());
 
 	glob.sync(config.mocksDir + '/*.js*').forEach(function (file) {
 		var middleware = require(path.resolve(file));
@@ -47,7 +37,39 @@ function mocks(config) {
 		middlewares.push(middleware);
 	});
 
+	//Use proxy
+	if (config.proxies) {
+		config.proxies.forEach(function(proxy){
+			var router = express.Router();
+			router.all(proxy.uri, httpProxy(proxy.host));
+			middlewares.push(router);
+		});
+	}
+
 	return middlewares;
+}
+
+
+function jsonParse() {
+	var parse = bodyParser.json();
+	return function (req, res, next) {
+		if (req.headers['content-type'] == 'application/json') {
+			parse(req, res, next);
+		} else {
+			next();
+		}
+	}
+}
+
+function urlEncodedParse() {
+	var parse = bodyParser.urlencoded({extended: false});
+	return function (req, res, next) {
+		if (req.headers['content-type'] == 'application/x-www-form-urlencoded') {
+			parse(req, res, next);
+		} else {
+			next();
+		}
+	}
 }
 
 function cors(req, res, next) {

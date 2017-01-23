@@ -1,6 +1,6 @@
 {
   "name": "simple-http-mock",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Simple mock module",
   "main": "index.js",
   "scripts": {
